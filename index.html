@@ -908,6 +908,156 @@
       color: var(--muted);
     }
 
+    /* ---------- PDF Section ---------- */
+.pdf-section {
+  margin-top: 40px;
+}
+
+.pdf-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pdf-preview-card {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+.pdf-placeholder {
+  position: relative;
+  border-radius: var(--radius-xl);
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  border: 1px solid rgba(148,163,184,0.5);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  height: 340px;
+}
+
+.pdf-embed {
+  display: block;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 20px rgba(15,23,42,0.8);
+}
+
+.pdf-actions {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(148,163,184,0.3);
+}
+
+.pdf-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(12px);
+}
+
+.pdf-btn.download {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: 1px solid rgba(16,185,129,0.4);
+}
+
+.pdf-btn.view {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: 1px solid rgba(59,130,246,0.4);
+}
+
+.pdf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+.pdf-info {
+  padding: 20px;
+  background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,1));
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(148,163,184,0.4);
+  height: fit-content;
+  box-shadow: var(--shadow-soft);
+}
+
+.pdf-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(59,130,246,0.15);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(59,130,246,0.3);
+  font-size: 12px;
+  color: #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.meta-dot-orange {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 12px rgba(245,158,11,0.6);
+}
+
+.pdf-features {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pdf-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+.pdf-features .bullet {
+  color: #facc15;
+  font-size: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .pdf-preview-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .pdf-placeholder {
+    height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pdf-actions {
+    flex-direction: column;
+  }
+  
+  .pdf-info {
+    padding: 16px;
+  }
+}
+
+
     .map-side-footer span strong {
       color: #e5e7eb;
       font-weight: 500;
@@ -1287,6 +1437,52 @@
         </div>
       </div>
     </section>
+
+
+<!-- 🔥 NEW PDF SECTION - SEPARATE FROM MAP 🔥 -->
+<section id="pdf-map" class="pdf-section reveal reveal-strong">
+  <div class="section-heading">
+    <h2>Official Route Map</h2>
+    <p>Police Rural Route Map - Download or view full PDF</p>
+  </div>
+  
+  <div class="pdf-container">
+    <!-- PDF Preview + Download -->
+    <div class="pdf-preview-card">
+      <div class="pdf-placeholder">
+        <embed src="pmap.pdf#view=FitH&toolbar=0&navpanes=0" 
+               type="application/pdf" 
+               class="pdf-embed" 
+               width="100%" 
+               height="300">
+        
+        <div class="pdf-actions">
+          <!-- <a href="pmap.pdf" download class="pdf-btn download">
+            📥 Download PDF
+          </a> -->
+          <a href="pmap.pdf#view=FitH" target="_blank" class="pdf-btn view">
+            👁️ View Fullscreen
+          </a>
+        </div>
+      </div>
+      
+      <div class="pdf-info">
+        <div class="pdf-meta">
+          <span class="meta-dot-orange"></span>
+          <span>Police Rural Route Map - Koppal District</span>
+        </div>
+        <ul class="pdf-features">
+          <li><span class="bullet">●</span> All Check Posts (CP-1 to CP-4)</li>
+          <li><span class="bullet">●</span> Medical Teams & Drinking Water</li>
+          <li><span class="bullet">●</span> Vehicle Parking & Barricades</li>
+          <li><span class="bullet">●</span> Anjanadri Hanuma Mala Route</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     <!-- Route details -->
     <section id="details">
