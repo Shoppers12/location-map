@@ -1337,6 +1337,21 @@
         <!-- </div> -->
 
 
+        <!-- 🔥 BUKKASAGAR (SAME Blue style) 🔥 -->
+        <div class="dropdown-container" data-dropdown="bukkasagar">
+          <button class="btn-secondary" id="bukkasagarBtn">
+            Bukkasagar ▼
+          </button>
+          <div class="dropdown-menu" id="bukkasagarMenu">
+            <button class="dropdown-item" data-location="checkpost1">
+              <span class="item-icon">🚨</span> Check Post 1 (CP-1)
+            </button>
+            <!-- <button class="dropdown-item" data-location="bukkasagar-main">
+              <span class="item-icon">🏞️</span> Bukkasagar Main
+            </button> -->
+          </div>
+        </div>        
+
 
           <button class="btn-ghost" id="scrollToDetails">
             View route details
@@ -1609,48 +1624,9 @@
     </footer>
   </main>
 
+
+
   <!-- <script>
-     // Open Google Maps directions in new tab
-  document.getElementById("openDirections").addEventListener("click", function () {
-    window.open(
-      "https://maps.app.goo.gl/AkJZ89Uee54DAcT59",
-      "_blank",
-      "noopener"
-    );
-  });
-
-    document.getElementById("scrollToDetails").addEventListener("click", function () {
-      document.getElementById("details").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
-    // Reveal on scroll
-    const revealed = new Set();
-
-    function handleReveal(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealed.add(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }
-
-    const observer =
-      "IntersectionObserver" in window
-        ? new IntersectionObserver(handleReveal, {
-            threshold: 0.16
-          })
-        : null;
-
-    if (observer) {
-      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-    } else {
-      // Fallback: show everything if IntersectionObserver is not supported
-      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
-    }
-  </script> -->
-  <script>
   // Get directions button
   document.getElementById("openDirections").addEventListener("click", function () {
     window.open(
@@ -1729,7 +1705,106 @@
   } else {
     document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
   }
+</script> -->
+
+<script>
+  // Get directions button (UNCHANGED)
+document.getElementById("openDirections").addEventListener("click", function () {
+  window.open("https://maps.app.goo.gl/AkJZ89Uee54DAcT59", "_blank", "noopener");
+});
+
+// 🔥 SCALABLE DROPDOWN SYSTEM - WORKS FOR ANY NUMBER OF BUTTONS 🔥
+document.querySelectorAll('.dropdown-container').forEach(container => {
+  const btn = container.querySelector('button');
+  const menu = container.querySelector('.dropdown-menu');
+  
+  // Toggle THIS dropdown only
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    
+    // Close ALL OTHER dropdowns
+    document.querySelectorAll('.dropdown-container').forEach(other => {
+      if (other !== container) {
+        other.classList.remove("active");
+      }
+    });
+    
+    // Toggle current dropdown
+    container.classList.toggle("active");
+  });
+});
+
+// 🔥 ONE EVENT LISTENER FOR ALL DROPDOWN ITEMS (Unlimited!) 🔥
+document.querySelectorAll(".dropdown-item").forEach(item => {
+  item.addEventListener("click", function () {
+    const location = this.dataset.location;
+    const currentContainer = this.closest('.dropdown-container');
+    
+    // 🔥 COMPLETE MAP LINKS - ADD AS MANY AS YOU WANT! 🔥
+    const mapLinks = {
+      // Kadebagilu
+      checkpost2: "https://maps.app.goo.gl/DtbewUFwJEJVeJGW9",
+      drinkingwater: "https://maps.app.goo.gl/dA4WNruGtWJdnHob8", 
+      medicalteam1: "https://maps.app.goo.gl/ahqtpX7t6JWZW8fb9",
+      
+      // Bukkasagar (NEW!)
+      checkpost1: "https://maps.app.goo.gl/Q9r899u52pkHxnHr5",
+      "bukkasagar-main": "https://maps.app.goo.gl/YOUR_BUKKASAGAR_LINK",
+      
+      // ADD MORE HERE - UNLIMITED!
+      cp3: "https://maps.app.goo.gl/YOUR_CP3_LINK",
+      parking1: "https://maps.app.goo.gl/YOUR_PARKING_LINK"
+    };
+    
+    if (mapLinks[location]) {
+      window.open(mapLinks[location], "_blank", "noopener");
+    }
+    
+    // Close dropdown
+    currentContainer.classList.remove("active");
+  });
+});
+
+// Close ALL dropdowns when clicking outside
+document.addEventListener("click", function () {
+  document.querySelectorAll('.dropdown-container').forEach(container => {
+    container.classList.remove("active");
+  });
+});
+
+// Smooth scroll to details (UNCHANGED)
+document.getElementById("scrollToDetails").addEventListener("click", function () {
+  document.getElementById("details").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+// Reveal on scroll (UNCHANGED)
+const revealed = new Set();
+
+function handleReveal(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealed.add(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}
+
+const observer = "IntersectionObserver" in window
+  ? new IntersectionObserver(handleReveal, { threshold: 0.16 })
+  : null;
+
+if (observer) {
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+} else {
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+}
+
 </script>
+
 
 
 
