@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anjaneyadri Hill Map</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #ffb341;
+      --accent-soft: rgba(255,179,65,0.15);
+      --text: #f5f7ff;
+      --muted: #9ca3af;
+      --card-bg: #0f172a;
+      --border-soft: rgba(148,163,184,0.4);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 22px 45px rgba(15,23,42,0.7);
+      --shadow-subtle: 0 18px 40px rgba(0,0,0,0.35);
+      --transition-fast: 180ms ease-out;
+      --transition-med: 260ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #020617 100%);
+      color: var(--text);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- Layout ---------- */
+    .page-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 16px 40px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(2,6,23,0.94), transparent);
+      border-bottom: 1px solid rgba(148,163,184,0.22);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f97316, #facc15 40%, #4c1d95 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(251,191,36,0.8);
+    }
+
+    .logo-pill::after {
+      content: "";
+      position: absolute;
+      inset: 10%;
+      border-radius: inherit;
+      border: 1px solid rgba(15,23,42,0.7);
+      box-shadow: inset 0 0 12px rgba(15,23,42,0.8);
+    }
+
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-title-main {
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-title-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f97316, #facc15);
+      transition: width var(--transition-med);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(248,250,252,0.16);
+      background: radial-gradient(circle at top left, rgba(249,115,22,0.28), transparent 55%);
+      color: #f9fafb;
+      text-decoration: none;
+      box-shadow: 0 10px 26px rgba(15,23,42,0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-cta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(251,191,36,0.18), rgba(249,115,22,0.2));
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .nav-cta:hover::before {
+      opacity: 1;
+    }
+
+    .nav-cta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #facc15;
+      box-shadow: 0 0 10px rgba(252,211,77,0.9);
+      animation: pulse-dot 1.5s infinite ease-in-out;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 16px;
+      }
+    }
+
+    .hero-heading-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+      background: radial-gradient(circle at left, rgba(248,250,252,0.06), transparent 55%);
+      margin-bottom: 12px;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4ade80;
+      box-shadow: 0 0 10px rgba(74,222,128,0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4.4vw, 40px);
+      line-height: 1.12;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #facc15, #fb923c, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    .hero-highlight {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .badge-soft {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.45);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-soft-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(251,191,36,0.8);
+    }
+
+    .hero-cta-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 9px 18px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(120deg, #f59e0b, #f97316, #ea580c);
+      color: #020617;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.2), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .btn-primary:hover::after {
+      opacity: 1;
+    }
+
+    .btn-ghost {
+      padding: 8px 14px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.85);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.95);
+      border-color: rgba(248,250,252,0.6);
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+
+/* Kadebagilu dropdown styles */
+.btn-secondary {
+  padding: 9px 18px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 2px solid rgba(59,130,246,0.6);
+  background: linear-gradient(120deg, rgba(59,130,246,0.15), rgba(99,102,241,0.15));
+  color: #e5e7eb;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(59,130,246,0.25);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(120deg, rgba(59,130,246,0.25), rgba(99,102,241,0.25));
+  border-color: rgba(59,130,246,0.9);
+  box-shadow: 0 12px 32px rgba(59,130,246,0.35);
+  transform: translateY(-1px);
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 220px;
+  background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,1));
+  border: 1px solid rgba(148,163,184,0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.95);
+  transition: all var(--transition-med);
+  z-index: 100;
+  backdrop-filter: blur(16px);
+}
+
+.dropdown-container.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  color: #e5e7eb;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: 0;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(99,102,241,0.15));
+  color: #f8fafc;
+  padding-left: 20px;
+}
+
+.dropdown-item:first-child {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.dropdown-item:last-child {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.item-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+
+/* ---------- Mobile & Tablet Responsive (MUST ADD THIS) ---------- */
+/* @media (max-width: 640px) {
+  .hero-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px;
+  }
+  
+  .dropdown-container {
+    width: 100% !important;
+  }
+  
+  .btn-secondary {
+    justify-content: center;
+    width: 100% !important;
+  }
+  
+  .dropdown-menu {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    min-width: unset !important;
+    max-height: 70vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+    transform: translateY(100%) scale(0.95) !important;
+    margin: 0 16px;
+  }
+  
+  .dropdown-container.active .dropdown-menu {
+    transform: translateY(0) scale(1) !important;
+  }
+  
+  .dropdown-item {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+} */
+/* ---------- Mobile Responsive (Desktop-style dropdown, no overflow) ---------- */
+@media (max-width: 640px) {
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .dropdown-container {
+    width: 100%;
+  }
+  
+  .btn-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    min-width: unset !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 16px;
+    border-radius: var(--radius-lg);
+    transform: translateY(-8px) scale(0.95);
+  }
+  
+  .dropdown-container.active .dropdown-menu {
+    transform: translateY(0) scale(1);
+  }
+  
+  .dropdown-item {
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 880px) and (min-width: 641px) {
+  .dropdown-menu {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.95);
+  }
+  
+  .dropdown-container.active .dropdown-menu {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+
+
+
+    .btn-icon-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+    }
+
+    .hero-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .meta-dot-gold {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #facc15;
+    }
+
+    .meta-dot-blue {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #38bdf8;
+    }
+
+    /* ---------- Map Card ---------- */
+    .map-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow: var(--shadow-subtle);
+      overflow: hidden;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      isolation: isolate;
+    }
+
+    @media (max-width: 880px) {
+      .map-card {
+        min-height: 260px;
+      }
+    }
+
+    .map-card-header {
+      padding: 10px 14px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .map-card-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .map-card-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .map-chip-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .map-chip {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.92);
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      color: #e5e7eb;
+    }
+
+    .map-chip span.small {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .map-card-body {
+      position: relative;
+      flex: 1;
+      padding: 10px 10px 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .map-card-body {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .map-viewport {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: radial-gradient(circle at top, #1e293b, #020617 75%);
+      box-shadow: inset 0 0 40px rgba(15,23,42,0.85);
+    }
+
+    .map-viewport::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(234,88,12,0.4), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(249,115,22,0.35), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(56,189,248,0.4), transparent 55%);
+      opacity: 0.5;
+      transform: translate3d(0,0,0);
+      animation: slow-orbit 18s linear infinite alternate;
+    }
+
+    .map-viewport-inner {
+      position: relative;
+      padding: 10px;
+      display: grid;
+      place-items: center;
+    }
+
+    .map-image {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 4 / 3;
+      border-radius: 18px;
+      border: 1px solid rgba(248,250,252,0.15);
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(250,204,21,0.5), transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(56,189,248,0.5), transparent 60%),
+        linear-gradient(135deg, #111827, #020617);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+      transform-origin: center;
+      transition: transform 260ms ease-out, box-shadow 260ms ease-out;
+    }
+
+    .map-image:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 22px 52px rgba(15,23,42,1);
+    }
+
+    .map-route-line {
+      position: absolute;
+      inset: 18% 18%;
+      border-radius: 999px;
+      border: 2px dashed rgba(15,23,42,0.8);
+      box-shadow: inset 0 0 12px rgba(15,23,42,0.9);
+      overflow: hidden;
+    }
+
+    .map-route-line::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid rgba(251,191,36,0.85);
+      border-style: dashed;
+      mask-image: linear-gradient(90deg, transparent, #000 40%, #000 60%, transparent);
+      animation: dash-move 3.2s linear infinite;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f97316, #b91c1c 70%);
+      box-shadow: 0 0 16px rgba(248,250,252,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-pin::after {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #fefce8;
+    }
+
+    .map-pin.main {
+      top: 20%;
+      left: 60%;
+      animation: pin-bounce 1.8s ease-in-out infinite;
+    }
+
+    .map-pin.base {
+      bottom: 18%;
+      left: 32%;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #166534 70%);
+      animation: pin-breathe 2.1s ease-in-out infinite;
+    }
+
+    .map-glow {
+      position: absolute;
+      inset: 40% 25% auto;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(15,23,42,0.85) 0, transparent 70%);
+      transform: translateY(32px);
+      opacity: 0.5;
+    }
+
+    .map-legend {
+      position: absolute;
+      inset: auto 10px 10px 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.92);
+      border: 1px solid rgba(148,163,184,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 10px;
+      backdrop-filter: blur(12px);
+    }
+
+    .map-legend-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .legend-dot.orange {
+      background: #f97316;
+    }
+
+    .legend-dot.green {
+      background: #22c55e;
+    }
+
+    .map-legend-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .legend-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .map-meta {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .map-side-panel {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.98));
+      border: 1px solid rgba(148,163,184,0.55);
+      padding: 10px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .map-side-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.98);
+      color: #e5e7eb;
+      font-size: 10px;
+      align-self: flex-start;
+    }
+
+    .map-side-tag .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: conic-gradient(from 180deg, #22c55e, #facc15, #f97316, #22c55e);
+      box-shadow: 0 0 10px rgba(52,211,153,0.8);
+    }
+
+    .map-side-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .map-side-text {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .map-steps {
+      margin-top: 4px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .map-step {
+      padding: 6px 8px;
+      border-radius: var(--radius-md);
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.5);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .map-step-index {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(15,23,42,1);
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .map-step-main {
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .map-step-sub {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .map-side-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .map-side-footer span strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .mini-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.95);
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      margin-top: 32px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .section-heading p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 880px) {
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(15,23,42,1), rgba(15,23,42,0.96));
+      border: 1px solid rgba(148,163,184,0.45);
+      padding: 12px 13px;
+      box-shadow: 0 16px 36px rgba(15,23,42,0.9);
+      font-size: 12px;
+    }
+
+    .card h3 {
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+
+    .chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.98);
+      color: #e5e7eb;
+    }
+
+    ul.custom-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    ul.custom-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    ul.custom-list li span.bullet {
+      font-size: 12px;
+      color: #facc15;
+      margin-top: 2px;
+    }
+
+    ul.custom-list li span.text {
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ---------- Scroll animations ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px) scale(0.99);
+      transition:
+        opacity 360ms ease-out,
+        transform 360ms ease-out,
+        box-shadow 360ms ease-out,
+        border-color 360ms ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .reveal-strong.visible {
+      box-shadow: 0 16px 40px rgba(15,23,42,0.95);
+      border-color: rgba(248,250,252,0.35);
+    }
+
+    /* ---------- Utility ---------- */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(148,163,184,0.5), transparent);
+      margin-top: 30px;
+      opacity: 0.8;
+    }
+
+    footer {
+      padding-top: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: #facc15;
+      text-decoration: none;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.1; }
+    }
+
+    @keyframes slow-orbit {
+      0% { transform: translate3d(-6%, -2%, 0) rotate(0deg); }
+      100% { transform: translate3d(5%, 4%, 0) rotate(5deg); }
+    }
+
+    @keyframes dash-move {
+      to { transform: translateX(-40%); }
+    }
+
+    @keyframes pin-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes pin-breathe {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(34,197,94,0.9); }
+      50% { transform: scale(1.05); box-shadow: 0 0 18px rgba(34,197,94,1); }
+    }
+
+    /* ---------- Responsive tweaks ---------- */
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-subtitle {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="top">
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-pill"></div>
+        <div class="nav-title">
+          <div class="nav-title-main">Anjaneyadri Hill</div>
+          <div class="nav-title-sub">Interactive route & info</div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#map" class="nav-link">Map view</a>
+        <a href="#details" class="nav-link">Route info</a>
+        <a href="#tips" class="nav-link">Visitor tips</a>
+      </div>
+
+      <a href="#map" class="nav-cta">
+        <span class="nav-cta-dot"></span>
+        <span>View route</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="hero-heading-pill">
+          <span class="hero-dot"></span>
+          <span>Plan your climb to Anjaneyadri</span>
+        </div>
+
+        <h1 class="hero-title">
+          A map of <span>Anjaneyadri Hill</span>
+        </h1>
+<!-- 
+        <p class="hero-subtitle">
+          Single-page static site that works great on mobile and desktop, with a smooth map preview, route steps, and subtle motion that keeps the page alive.
+        </p> -->
+
+        <div class="hero-highlight">
+          <div class="badge-soft">
+            <span class="badge-soft-dot"></span>
+            <span>HTML · CSS · Vanilla JS only</span>
+          </div>
+          <span>•</span>
+          <span>Optimized for small screens & slow networks</span>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary" id="openDirections">
+            Get directions to Anjaneyadri Hill
+            <span class="btn-icon-circle">↓</span>
+          </button>
+
+
+
+                <!-- New Kadebagilu button with dropdown -->
+            <div class="dropdown-container">
+            <button class="btn-secondary" id="kadebagiluBtn">
+            Kadebagilu
+            <span class="btn-icon-circle">▼</span>
+            </button>
+            
+            <div class="dropdown-menu" id="kadebagiluMenu">
+            <button class="dropdown-item" data-location="checkpost2">
+                <span class="item-icon">📍</span>
+                Check Post -2
+            </button>
+            <button class="dropdown-item" data-location="drinkingwater">
+                <span class="item-icon">💧</span>
+                Drinking Water
+            </button>
+            <button class="dropdown-item" data-location="medicalteam1">
+                <span class="item-icon">🩺</span>
+                Medical Team -1
+            </button>
+            </div>
+            </div>
+        <!-- </div> -->
+
+
+
+          <button class="btn-ghost" id="scrollToDetails">
+            View route details
+            <span class="btn-icon-circle">→</span>
+          </button>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="meta-dot-gold"></span>
+            <span>Approx. 575 steps · 30–45 min climb</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-dot-blue"></span>
+            <span>Best light: Sunrise & sunset</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Card -->
+      <div id="map" class="map-card reveal reveal-strong">
+        <div class="map-card-header">
+          <div>
+            <div class="map-card-title">Anjaneyadri Hill Route</div>
+            <div class="map-card-sub">From base entrance to hilltop temple</div>
+          </div>
+
+          <div class="map-chip-row">
+            <div class="map-chip">
+              <span>Static preview</span>
+              <span class="small">Tap to zoom</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-card-body">
+          <div class="map-viewport">
+            <div class="map-viewport-inner">
+              <div class="map-image" aria-label="Stylised preview map of Anjaneyadri Hill route">
+                <!-- Replace this box with your real static image if you want -->
+                <div class="map-route-line"></div>
+                <div class="map-pin main" title="Hilltop temple"></div>
+                <div class="map-pin base" title="Base entrance"></div>
+                <div class="map-glow"></div>
+              </div>
+            </div>
+
+            <div class="map-legend">
+              <div class="map-legend-left">
+                <div class="legend-dot orange"></div>
+                <span>Temple summit</span>
+                <div class="legend-dot green"></div>
+                <span>Steps starting point</span>
+              </div>
+              <div class="map-legend-labels">
+                <div class="legend-pill">~575 steps</div>
+                <div class="legend-pill">Elevation gain ~ 200 m</div>
+              </div>
+              <div class="map-meta">
+                Not a live map – visual preview only
+              </div>
+            </div>
+          </div>
+
+          <aside class="map-side-panel">
+            <div class="map-side-tag">
+              <span class="dot"></span>
+              <span>Quick overview</span>
+            </div>
+
+            <div class="map-side-title">Route snapshot</div>
+            <p class="map-side-text">
+              This preview focuses on the section from the base entrance at Hanumanahalli up to the hilltop temple, where you get wide views over the Tungabhadra river and Hampi’s boulder fields.
+            </p>
+
+            <div class="map-steps">
+              <div class="map-step">
+                <div class="map-step-index">1</div>
+                <div>
+                  <div class="map-step-main">Reach the base parking</div>
+                  <div class="map-step-sub">Look for the archway marking the entrance to Anjaneyadri Hill.</div>
+                </div>
+              </div>
+
+              <div class="map-step">
+                <div class="map-step-index">2</div>
+                <div>
+                  <div class="map-step-main">Climb the covered steps</div>
+                  <div class="map-step-sub">Initial sections have a roof and occasional benches for breaks.</div>
+                </div>
+              </div>
+
+              <div class="map-step">
+                <div class="map-step-index">3</div>
+                <div>
+                  <div class="map-step-main">Final narrow stretch</div>
+                  <div class="map-step-sub">Last part passes between boulders and gets steeper before the temple entrance.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-side-footer">
+              <span>Average climb: <strong>30–45 mins</strong></span>
+              <span class="mini-badge">Difficulty: Easy–moderate</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Route details -->
+    <section id="details">
+      <div class="section-heading">
+        <h2>Route & distance</h2>
+        <p>Key info for planning your climb from base village to the hilltop temple.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="card reveal">
+          <h3>Basic route details</h3>
+          <div class="chip-row">
+            <span class="chip">Start: Hanumanahalli village</span>
+            <span class="chip">End: Anjaneyadri temple</span>
+          </div>
+
+          <ul class="custom-list">
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Total steps: around 575, with railings and resting spots at intervals.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Typical climb time: 30–45 minutes one way, depending on pace and breaks.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Terrain: concrete steps with a few narrower rocky sections near the top.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Views: Tungabhadra river, Hampi ruins and surrounding boulder hills.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <h3>Best time & lighting</h3>
+          <div class="chip-row">
+            <span class="chip">Golden hour views</span>
+            <span class="chip">Cooler temperatures</span>
+          </div>
+
+          <ul class="custom-list">
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Sunrise: soft light over the Tungabhadra river and misty boulders.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Sunset: warm colours and long shadows across Hampi’s landscape.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Avoid afternoon heat in summer; carry water regardless of season.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visitor tips -->
+    <section id="tips">
+      <div class="section-heading">
+        <h2>Visitor checklist</h2>
+        <p>Simple suggestions to make the climb comfortable and safe for all ages.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="card reveal">
+          <h3>What to carry</h3>
+          <ul class="custom-list">
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Comfortable footwear with good grip for the steps and rocky patches.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Water bottle, cap, and light snacks if travelling with kids or elders.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">A small bag instead of loose items, as monkeys are curious near the top.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <h3>Temple & etiquette</h3>
+          <ul class="custom-list">
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Dress modestly, as the summit is a temple dedicated to Lord Hanuman.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Remove footwear before entering the temple premises.</span>
+            </li>
+            <li>
+              <span class="bullet">●</span>
+              <span class="text">Avoid feeding monkeys directly and keep food items sealed.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <footer>
+      <!-- <p>
+        Static responsive map layout built with HTML, CSS and JavaScript. Customize this for your own Anjaneyadri Hill project.
+      </p> -->
+    </footer>
+  </main>
+
+  <!-- <script>
+     // Open Google Maps directions in new tab
+  document.getElementById("openDirections").addEventListener("click", function () {
+    window.open(
+      "https://maps.app.goo.gl/AkJZ89Uee54DAcT59",
+      "_blank",
+      "noopener"
+    );
+  });
+
+    document.getElementById("scrollToDetails").addEventListener("click", function () {
+      document.getElementById("details").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    // Reveal on scroll
+    const revealed = new Set();
+
+    function handleReveal(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealed.add(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }
+
+    const observer =
+      "IntersectionObserver" in window
+        ? new IntersectionObserver(handleReveal, {
+            threshold: 0.16
+          })
+        : null;
+
+    if (observer) {
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    } else {
+      // Fallback: show everything if IntersectionObserver is not supported
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+    }
+  </script> -->
+  <script>
+  // Get directions button
+  document.getElementById("openDirections").addEventListener("click", function () {
+    window.open(
+      "https://maps.app.goo.gl/AkJZ89Uee54DAcT59",
+      "_blank",
+      "noopener"
+    );
+  });
+
+  // Kadebagilu dropdown functionality
+  const kadebagiluBtn = document.getElementById("kadebagiluBtn");
+  const dropdownContainer = kadebagiluBtn.closest(".dropdown-container");
+  const dropdownMenu = document.getElementById("kadebagiluMenu");
+  const dropdownItems = document.querySelectorAll(".dropdown-item");
+
+  // Toggle dropdown
+  kadebagiluBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdownContainer.classList.toggle("active");
+  });
+
+  // Close dropdown when clicking items
+  dropdownItems.forEach(item => {
+    item.addEventListener("click", function () {
+      const location = this.dataset.location;
+      dropdownContainer.classList.remove("active");
+      
+      // TODO: Replace these with your actual map links
+      const mapLinks = {
+        checkpost2: "https://maps.app.goo.gl/DtbewUFwJEJVeJGW9",
+        drinkingwater: "https://maps.app.goo.gl/dA4WNruGtWJdnHob8", 
+        medicalteam1: "https://maps.app.goo.gl/ahqtpX7t6JWZW8fb9"
+      };
+      
+      if (mapLinks[location]) {
+        window.open(mapLinks[location], "_blank", "noopener");
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function () {
+    dropdownContainer.classList.remove("active");
+  });
+
+  // Smooth scroll to details (unchanged)
+  document.getElementById("scrollToDetails").addEventListener("click", function () {
+    document.getElementById("details").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+
+  // Reveal on scroll (unchanged)
+  const revealed = new Set();
+
+  function handleReveal(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealed.add(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }
+
+  const observer =
+    "IntersectionObserver" in window
+      ? new IntersectionObserver(handleReveal, {
+          threshold: 0.16
+        })
+      : null;
+
+  if (observer) {
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+  }
+</script>
+
+
+
+</body>
+</html>
