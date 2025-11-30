@@ -429,46 +429,7 @@
 }
 
 
-/* ---------- Mobile & Tablet Responsive (MUST ADD THIS) ---------- */
-/* @media (max-width: 640px) {
-  .hero-cta-row {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px;
-  }
-  
-  .dropdown-container {
-    width: 100% !important;
-  }
-  
-  .btn-secondary {
-    justify-content: center;
-    width: 100% !important;
-  }
-  
-  .dropdown-menu {
-    position: fixed !important;
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    min-width: unset !important;
-    max-height: 70vh;
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
-    transform: translateY(100%) scale(0.95) !important;
-    margin: 0 16px;
-  }
-  
-  .dropdown-container.active .dropdown-menu {
-    transform: translateY(0) scale(1) !important;
-  }
-  
-  .dropdown-item {
-    padding: 16px 20px;
-    font-size: 14px;
-  }
-} */
+
 /* ---------- Mobile Responsive (Desktop-style dropdown, no overflow) ---------- */
 @media (max-width: 640px) {
   .hero-cta-row {
@@ -1260,7 +1221,7 @@
       <div class="nav-left">
         <div class="logo-pill"></div>
         <div class="nav-title">
-          <div class="nav-title-main">Anjanadri Hanuma Mala Visarjana Police App</div>
+          <div class="nav-title-main">Anjanadri Hanuma Mala Visarjana Police App 2025</div>
           <!-- <div class="nav-title-sub">Interactive route & info</div> -->
         </div>
       </div>
@@ -1288,7 +1249,7 @@
         </div>
 
         <h1 class="hero-title">
-          A map of <span>Anjanadri Hill</span>
+          <span>A Route Map of Anjanadri Hanuma Mala Visarjana - 2025</span>
         </h1>
 <!-- 
         <p class="hero-subtitle">
@@ -1322,36 +1283,45 @@
   </button>
   <div class="dropdown-menu" id="govVehicleParkingMenu">
     <button class="dropdown-item" data-location="govVehicleParking-1">
-      <span class="item-icon">🚓</span> Govt Vehicle Parking 1
+      <span class="item-icon">🚓</span>VP A-19 (Near Out post/Anjanadri betta opp - Parking place)
     </button>
     <button class="dropdown-item" data-location="govVehicleParking-2">
-      <span class="item-icon">🚓</span> Govt Vehicle Parking 2
+      <span class="item-icon">🚓</span> VP S-14 (Behind Veda Patashala Puneet circle)
     </button>
   </div>
 </div>
 
 
 
-        <div class="dropdown-container" data-dropdown="busParking">
-  <button class="btn-secondary" id="busParkingBtn">
-    🚌 Bus Parking 
+        <div class="dropdown-container" data-dropdown="abusParking">
+  <button class="btn-secondary" id="abusParkingBtn">
+    🚌 Anegundi side Bus Parking 
     <span class="btn-icon-circle">▼</span>
   </button>
-  <div class="dropdown-menu" id="busParkingMenu">
+  <div class="dropdown-menu" id="abusParkingMenu">
     <button class="dropdown-item" data-location="busParking-1">
-      <span class="item-icon">🚌</span> Bus Parking 1
+      <span class="item-icon">🚌</span>VP A-1 (Anegundi Petrol pump right side) 
     </button>
     <button class="dropdown-item" data-location="busParking-2">
-      <span class="item-icon">🚌</span> Bus Parking 2
+      <span class="item-icon">🚌</span> VP A-4 (Anegundi Petrol pump left side)
     </button>
     <button class="dropdown-item" data-location="busParking-3">
-      <span class="item-icon">🚌</span> Bus Parking 3
+      <span class="item-icon">🚌</span> VP A-6 (Agengundi Utsava Place)
     </button>
+  </div>
+</div>
+
+ <div class="dropdown-container" data-dropdown="sbusParking">
+  <button class="btn-secondary" id="sbusParkingBtn">
+    🚌 Sanapur side Bus Parking 
+    <span class="btn-icon-circle">▼</span>
+  </button>
+  <div class="dropdown-menu" id="sbusParkingMenu">
     <button class="dropdown-item" data-location="busParking-4">
-      <span class="item-icon">🚌</span> Bus Parking 4
+      <span class="item-icon">🚌</span> VP S-2 (Shivu Field/ Govt land opp Green Stone hotel)
     </button>
     <button class="dropdown-item" data-location="busParking-5">
-      <span class="item-icon">🚌</span> Bus Parking 5
+      <span class="item-icon">🚌</span> VP S-4 (Anjanappa Land right side Hampi Delmont resort)
     </button>
   </div>
 </div>
@@ -1359,96 +1329,123 @@
 
 <div class="dropdown-container" data-dropdown="carParking">
   <button class="btn-secondary" id="carParkingBtn">
-    🚗 Car and Cruiser Parking 
+    🚗 Anegundi Side Car and Cruiser Parking 
     <span class="btn-icon-circle">▼</span>
   </button>
   <div class="dropdown-menu" id="carParkingMenu">
     <button class="dropdown-item" data-location="carParking-1">
-      <span class="item-icon">🚗</span> Car Parking 1
+      <span class="item-icon">🚗</span> VP A-2 (Opp Anegundi Petrol Pump)
     </button>
     <button class="dropdown-item" data-location="carParking-2">
-      <span class="item-icon">🚗</span> Car Parking 2
+      <span class="item-icon">🚗</span> VP A-3 (Gode Land Opp Anegundi Petrol Pump)
     </button>
     <button class="dropdown-item" data-location="carParking-3">
-      <span class="item-icon">🚗</span> Car Parking 3
+      <span class="item-icon">🚗</span> VP A-5 (Near DP Cross HRG Land)
     </button>
-    <button class="dropdown-item" data-location="carParking-4">
-      <span class="item-icon">🚗</span> Car Parking 4
-    </button>
+
     <button class="dropdown-item" data-location="carParking-5">
-      <span class="item-icon">🚗</span> Car Parking 5
+      <span class="item-icon">🚗</span> VP A-7 (Near DP cross behind Kallu Mantapa)
     </button>
     <button class="dropdown-item" data-location="carParking-6">
-      <span class="item-icon">🚗</span> Car Parking 6
+      <span class="item-icon">🚗</span> VP A-8 (Durga Betta Road Gaddige)
     </button>
     <button class="dropdown-item" data-location="carParking-7">
-      <span class="item-icon">🚗</span> Car Parking 7
+      <span class="item-icon">🚗</span> VP A-9 (Durga Betta Bus Stop)
     </button>
     <button class="dropdown-item" data-location="carParking-8">
-      <span class="item-icon">🚗</span> Car Parking 8
+      <span class="item-icon">🚗</span> VP A-10 (Koteshwar Rao Land opp Dream Mango Hotel)
     </button>
     <button class="dropdown-item" data-location="carParking-9">
-      <span class="item-icon">🚗</span> Car Parking 9
+      <span class="item-icon">🚗</span> VP A-11 (Koteshwar Rao Land left side Dream Mango Hotel)
     </button>
     <button class="dropdown-item" data-location="carParking-10">
-      <span class="item-icon">🚗</span> Car Parking 10
+      <span class="item-icon">🚗</span> VP A-12 (Anjanappa Land Near Om Home Hotel)
     </button>
     <button class="dropdown-item" data-location="carParking-11">
-      <span class="item-icon">🚗</span> Car Parking 11
+      <span class="item-icon">🚗</span> VP A-13 (Behind Same Place Hotel Near Pampa Sarovara Cross)
     </button>
     <button class="dropdown-item" data-location="carParking-12">
-      <span class="item-icon">🚗</span> Car Parking 12
+      <span class="item-icon">🚗</span> VP A-14 (Pampa Sarovara Road Illur Ramakrishna Land-1)
+    </button>
+    <button class="dropdown-item" data-location="carParking-12-1">
+      <span class="item-icon">🚗</span> VP A-15 (Pampa Sarovara Road Illur Ramakrishna Land-2)
     </button>
     <button class="dropdown-item" data-location="carParking-13">
-      <span class="item-icon">🚗</span> Car Parking 13
-    </button>
-    <button class="dropdown-item" data-location="carParking-14">
-      <span class="item-icon">🚗</span> Car Parking 14
-    </button>
-    <button class="dropdown-item" data-location="carParking-15">
-      <span class="item-icon">🚗</span> Car Parking 15
-    </button>
-    <button class="dropdown-item" data-location="carParking-16">
-      <span class="item-icon">🚗</span> Car Parking 16
-    </button>
-    <button class="dropdown-item" data-location="carParking-17">
-      <span class="item-icon">🚗</span> Car Parking 17
-    </button>
-    <button class="dropdown-item" data-location="carParking-18">
-      <span class="item-icon">🚗</span> Car Parking 18
-    </button>
-    <button class="dropdown-item" data-location="carParking-19">
-      <span class="item-icon">🚗</span> Car Parking 19
-    </button>
-    <button class="dropdown-item" data-location="carParking-20">
-      <span class="item-icon">🚗</span> Car Parking 20
+      <span class="item-icon">🚗</span> VP A-16 (Narayana Land opp Bike ride point)
     </button>
   </div>
 </div>
 
+<div class="dropdown-container" data-dropdown="carParking">
+  <button class="btn-secondary" id="carParkingBtn">
+    🚗 Sanapur Side Car and Cruiser Parking 
+    <span class="btn-icon-circle">▼</span>
+    </button>
+    <div class="dropdown-menu" id="carParkingMenu">
+    <button class="dropdown-item" data-location="carParking-14">
+      <span class="item-icon">🚗</span> VP S-5 (Opp Govt School Hanumantappa Land)
+    </button>
+    <button class="dropdown-item" data-location="carParking-15">
+      <span class="item-icon">🚗</span> VP S-6 (Rama Reddy Land right side CrazyPanda Hotel)
+    </button>
+    <button class="dropdown-item" data-location="carParking-16">
+      <span class="item-icon">🚗</span> VP S-8 (Prem Raj Land left side Lazy Panda Hotel)
+    </button>
+
+    <button class="dropdown-item" data-location="carParking-18">
+      <span class="item-icon">🚗</span> VP S-9 (Right side Lazy Panda Hotel)
+    </button>
+    <button class="dropdown-item" data-location="carParking-19">
+      <span class="item-icon">🚗</span> VP S-10 (venkata Ramana land)
+    </button>
+    <button class="dropdown-item" data-location="carParking-20">
+      <span class="item-icon">🚗</span> VP S-11 (Shareef Land)
+    </button>
+        <button class="dropdown-item" data-location="carParking-21">
+      <span class="item-icon">🚗</span> VP S-12 (Narsimha Land Near Kishkinda Resort cross)
+    </button>
+        <button class="dropdown-item" data-location="carParking-22">
+      <span class="item-icon">🚗</span> VP S-13 (Nagaraj Land Near Kishkinda Resort cross)
+    </button>
+      </div>
+
+</div>
+
+
+
 <div class="dropdown-container" data-dropdown="bikeParking">
   <button class="btn-secondary" id="bikeParkingBtn">
-    🏍️ Bike Parking 
+    🏍️ Anegundi Side Bike Parking 
     <span class="btn-icon-circle">▼</span>
   </button>
   <div class="dropdown-menu" id="bikeParkingMenu">
     <button class="dropdown-item" data-location="bikeParking-1">
-      <span class="item-icon">🏍️</span> Bike Parking 1
+      <span class="item-icon">🏍️</span> VP A-16A (Narayana Land Opp Bike ride point)
     </button>
     <button class="dropdown-item" data-location="bikeParking-2">
-      <span class="item-icon">🏍️</span> Bike Parking 2
+      <span class="item-icon">🏍️</span> VP A-17 (Raffi Land Bike Ride Point-1)
     </button>
     <button class="dropdown-item" data-location="bikeParking-3">
-      <span class="item-icon">🏍️</span> Bike Parking 3
+      <span class="item-icon">🏍️</span> VP A-18 (Raffi Land Bike Ride Point-2)
     </button>
+  </div>
+</div>
+
+
+<div class="dropdown-container" data-dropdown="bikeParking">
+  <button class="btn-secondary" id="bikeParkingBtn">
+    🏍️ Sanapur Side Bike Parking 
+    <span class="btn-icon-circle">▼</span>
+  </button>
+  <div class="dropdown-menu" id="bikeParkingMenu">
     <button class="dropdown-item" data-location="bikeParking-4">
-      <span class="item-icon">🏍️</span> Bike Parking 4
+      <span class="item-icon">🏍️</span> VP S-1 (Tirkappa Land Behind Parampara Store)
     </button>
     <button class="dropdown-item" data-location="bikeParking-5">
-      <span class="item-icon">🏍️</span> Bike Parking 5
+      <span class="item-icon">🏍️</span> VP S-3 (Behind Green Stone Hotel)
     </button>
     <button class="dropdown-item" data-location="bikeParking-6">
-      <span class="item-icon">🏍️</span> Bike Parking 6
+      <span class="item-icon">🏍️</span> VP S-7 (Bheemanur Ramu Land Opp Hidden Palace Hotel road)
     </button>
   </div>
 </div>
@@ -1474,25 +1471,25 @@
           </button>
           <div class="dropdown-menu" id="medicalTeamMenu">
             <button class="dropdown-item" data-location="medicalTeam-1">
-              <span class="item-icon">🩺</span> Medical Team 1 (MT-1)
+              <span class="item-icon">🩺</span> Medical Team 1 (Kadebagilu cross)
             </button>
             <button class="dropdown-item" data-location="medicalTeam-2">
-              <span class="item-icon">🩺</span> Medical Team 2 (MT-2)
+              <span class="item-icon">🩺</span> Medical Team 2 (Shri Krishna Devaraya Circle Anegundi)
             </button>
             <button class="dropdown-item" data-location="medicalTeam-3">
-              <span class="item-icon">🩺</span> Medical Team 3 (MT-3)
+              <span class="item-icon">🩺</span> Medical Team 3 (Pampa Sarovara)
             </button>
             <button class="dropdown-item" data-location="medicalTeam-4">
-              <span class="item-icon">🩺</span> Medical Team 4 (MT-4)
+              <span class="item-icon">🩺</span> Medical Team 4 (Anjanadri Outpost / parking place )
             </button>
             <button class="dropdown-item" data-location="medicalTeam-5">
-              <span class="item-icon">🩺</span> Medical Team 5 (MT-5)
+              <span class="item-icon">🩺</span> Medical Team 5 (Near Anjanadri Betta 250 steps)
             </button>
             <button class="dropdown-item" data-location="medicalTeam-6">
-              <span class="item-icon">🩺</span> Medical Team 6 (MT-6)
+              <span class="item-icon">🩺</span> Medical Team 6 (Anjanadri Betta Infront of Anjaneya Temple)
             </button>
             <button class="dropdown-item" data-location="medicalTeam-7">
-              <span class="item-icon">🩺</span> Medical Team 7 (MT-7)
+              <span class="item-icon">🩺</span> Medical Team 7 (Opp Veda Patashale Chikka Rampur)
             </button>
           </div>
         </div>     
@@ -1503,13 +1500,13 @@
     <span class="btn-icon-circle">▼</span>
   </button>
   <div class="dropdown-menu" id="drinkingWaterMenu">
-    <button class="dropdown-item" data-location="drinkingWater-1">💧 Drinking Water 1</button>
-    <button class="dropdown-item" data-location="drinkingWater-2">💧 Drinking Water 2</button>
-    <button class="dropdown-item" data-location="drinkingWater-3">💧 Drinking Water 3</button>
-    <button class="dropdown-item" data-location="drinkingWater-4">💧 Drinking Water 4</button>
-    <button class="dropdown-item" data-location="drinkingWater-5">💧 Drinking Water 5</button>
-    <button class="dropdown-item" data-location="drinkingWater-6">💧 Drinking Water 6</button>
-    <button class="dropdown-item" data-location="drinkingWater-7">💧 Drinking Water 7</button>
+    <button class="dropdown-item" data-location="drinkingWater-1">💧 Drinking Water 1 (Kadebagilu Cross)</button>
+    <button class="dropdown-item" data-location="drinkingWater-2">💧 Drinking Water 2 (Shri Krishna Devaraya Circle Anegundi)</button>
+    <button class="dropdown-item" data-location="drinkingWater-3">💧 Drinking Water 3 (Anegundi Utsava Place)</button>
+    <button class="dropdown-item" data-location="drinkingWater-4">💧 Drinking Water 4 (Pampa Sarovara)</button>
+    <button class="dropdown-item" data-location="drinkingWater-5">💧 Drinking Water 5 (Anjanadri Outpost / parking place )</button>
+    <button class="dropdown-item" data-location="drinkingWater-6">💧 Drinking Water 6 (Anjanadri Betta Infront of Anjaneya Temple)</button>
+    <button class="dropdown-item" data-location="drinkingWater-7">💧 Drinking Water 7 (Opp Veda Patashale Chikka Rampur)</button>
   </div>
 </div>
 
@@ -1525,17 +1522,14 @@
     <button class="dropdown-item" data-location="checkpost-2">
       <span class="item-icon">📍</span> Kadebagilu Check Post 2
     </button>
-    <button class="dropdown-item" data-location="checkpost-3">
-      <span class="item-icon">📍</span> Check Post 3
-    </button>
     <button class="dropdown-item" data-location="checkpost-4">
-      <span class="item-icon">📍</span> Check Post 4
-    </button>
-    <button class="dropdown-item" data-location="checkpost-5">
-      <span class="item-icon">📍</span> Sanapura Check Post 1
+      <span class="item-icon">📍</span> Jungli Cross Oneway Check Post 3
     </button>
     <button class="dropdown-item" data-location="checkpost-6">
-      <span class="item-icon">📍</span> Sanapura Check Post 2
+      <span class="item-icon">📍</span> Sanapura Panchayat Cross Check Post 4
+    </button>
+    <button class="dropdown-item" data-location="checkpost-5">
+      <span class="item-icon">📍</span> Shivapur cross Check Post 5
     </button>
   </div>
 </div>
@@ -1547,26 +1541,58 @@
   </button>
   <div class="dropdown-menu" id="bathingPlacesMenu">
     <button class="dropdown-item" data-location="bathingPlace-1">
-      <span class="item-icon">🚿</span> Bathing Place 1
+      <span class="item-icon">🚿</span> Bathing Place 1 (Chintamani Anegundi)
     </button>
     <button class="dropdown-item" data-location="bathingPlace-2">
-      <span class="item-icon">🚿</span> Bathing Place 2
+      <span class="item-icon">🚿</span> Bathing Place 2 (Anegundi Utsava Place)
     </button>
     <button class="dropdown-item" data-location="bathingPlace-3">
-      <span class="item-icon">🚿</span> Bathing Place 3
+      <span class="item-icon">🚿</span> Bathing Place 3 (Anegundi Talavara Gatta)
     </button>
     <button class="dropdown-item" data-location="bathingPlace-4">
-      <span class="item-icon">🚿</span> Bathing Place 4
+      <span class="item-icon">🚿</span> Bathing Place 4 (Behind Anjanadri Parking Place)
     </button>
     <button class="dropdown-item" data-location="bathingPlace-5">
-      <span class="item-icon">🚿</span> Bathing Place 5
+      <span class="item-icon">🚿</span> Bathing Place 5 (Veda Patashale)
     </button>
     <button class="dropdown-item" data-location="bathingPlace-6">
-      <span class="item-icon">🚿</span> Bathing Place 6
+      <span class="item-icon">🚿</span> Bathing Place 6 (Opp Lazy Panda Hotel)
+    </button>
+        <button class="dropdown-item" data-location="bathingPlace-7">
+      <span class="item-icon">🚿</span> Bathing Place 7 (Pampa Sarovara)
     </button>
   </div>
 </div>
 
+<div class="dropdown-container" data-dropdown="helpDesk">
+  <button class="btn-secondary" id="helpDeskBtn">
+   👮 Police Help Desk 
+    <span class="btn-icon-circle">▼</span>
+  </button>
+  <div class="dropdown-menu" id="helpDeskMenu">
+    <button class="dropdown-item" data-location="helpDesk-1">
+      <span class="item-icon">👮</span> Kadebagilu Cross
+    </button>
+    <button class="dropdown-item" data-location="helpDesk-2">
+      <span class="item-icon">👮</span> Shri Krishna Devaraya Circle
+    </button>
+    <button class="dropdown-item" data-location="helpDesk-3">
+      <span class="item-icon">👮</span> Pampa Sarovara Cross
+    </button>
+    <button class="dropdown-item" data-location="helpDesk-4">
+      <span class="item-icon">👮</span> Near Anjanadri Outpost/ Parking Place
+    </button>
+    <button class="dropdown-item" data-location="helpDesk-5">
+      <span class="item-icon">👮</span> Hanumanahalli Bus Stop
+    </button>
+    <button class="dropdown-item" data-location="helpDesk-6">
+      <span class="item-icon">👮</span> Near Sanapur Panchayat 
+    </button>
+        <button class="dropdown-item" data-location="helpDesk-7">
+      <span class="item-icon">👮</span> Near Veda Patashale 
+    </button>
+  </div>
+</div>
 
           <button class="btn-ghost" id="scrollToDetails">
             View route details
@@ -1878,20 +1904,23 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
       // Govt Vehicle Parking
       "govVehicleParking-1": "https://maps.app.goo.gl/ZZWrCVdbqsMB1ebD6",
 
-      "govVehicleParking-2": "https://maps.app.goo.gl/ExampleLink2",
+      "govVehicleParking-2": "https://maps.app.goo.gl/skpu5RNv42am5wn5A",
       
       // Bus Parking
-      "busParking-1": "https://maps.app.goo.gl/wfJUG8Z9t8tkwpxm9",
-      "busParking-2": "https://maps.app.goo.gl/swLADgo4qk72USsc8",
-      "busParking-3": "https://maps.app.goo.gl/GRtTj1xYyQnKnZ1R7",
+      "busParking-1": "https://maps.app.goo.gl/GVS4gZxPL6Rr77dv7",
+      "busParking-2": "https://maps.app.goo.gl/AP4XKTb5otPizfWQA",
+      "busParking-3": "https://maps.app.goo.gl/Ha4CVUKR3sxAHc3K9",
 
-      "busParking-4": "https://maps.app.goo.gl/HavrnPfzTVtoWqBK9",
-      "busParking-5": "https://maps.app.goo.gl/Ux1XGKUUuprYhhJx5",
+      "busParking-4": "https://maps.app.goo.gl/5GFW8dwWChZ1VRHRA",
+      "busParking-5": "https://maps.app.goo.gl/PPmWLfFVEzMy3Szo9",
+      
+
+      
       
       // Car and Cruiser Parking
-      "carParking-1": "https://maps.app.goo.gl/k4XziWKpBer9Qqsm6",
-      "carParking-2": "https://maps.app.goo.gl/XCsPhadsVqcgeVns6",
-      "carParking-3": "https://maps.app.goo.gl/XX97GbBN9SVEzeKGA",
+      "carParking-1": "https://maps.app.goo.gl/YNvF6N9AWHGdJr1YA",
+      "carParking-2": "https://maps.app.goo.gl/4AksMwP6ceh8Q3p68",
+      "carParking-3": "https://maps.app.goo.gl/L45iVk8AjKWKukfW6",
       "carParking-4": "https://maps.app.goo.gl/BUwx92ycYNmTYPeSA",
       "carParking-5": "https://maps.app.goo.gl/FU75GqFCk6fmiGqU8",
       "carParking-6": "https://maps.app.goo.gl/E7gmayejKnS5tVkB9",
@@ -1899,27 +1928,30 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
       "carParking-8": "https://maps.app.goo.gl/eo4JLwEg4jk1a8n79",
       "carParking-9": "https://maps.app.goo.gl/sME894r6SMhUshy5A",
       "carParking-10": "https://maps.app.goo.gl/rnmKzmDXB2dqXhRi8",
-      "carParking-11": "https://maps.app.goo.gl/F8ryVNyfsek89J1R8",
-      "carParking-12": "https://maps.app.goo.gl/2MAjbTPNRGsXwFLM9",
+      "carParking-11": "https://maps.app.goo.gl/6VTepmJag6ZAQhDD7",
+      "carParking-12": "https://maps.app.goo.gl/wAPAumd69tVtHr7z8",
+      "carParking-12-1": "https://maps.app.goo.gl/kUd7WU6o2bGbjEbx5",
+      "carParking-13": "https://maps.app.goo.gl/Ap4mCCDxCzP6SAwg6", 
 
-      "carParking-13": "https://maps.app.goo.gl/HCbZWZLVQSer8G4S7", 
-      "carParking-14": "https://maps.app.goo.gl/CxM5fyukyaYj6zP96",
+      "carParking-14": "https://maps.app.goo.gl/dr4k9Dp3k2Lw1zTh8",
       "carParking-15": "https://maps.app.goo.gl/9h1QGB5ZrTRLDeyz6",
       "carParking-16": "https://maps.app.goo.gl/gqWpPhp5Sxp95LGTA",
       "carParking-17": "https://maps.app.goo.gl/xWFJ623r1p5LU2eb8",
       "carParking-18": "https://maps.app.goo.gl/n8juLaPvPzMKCSBV9",
-      "carParking-19": "https://maps.app.goo.gl/hij1hMRhPrS1fzz59",
-      "carParking-20": "https://maps.app.goo.gl/xEmMrRkLaSp2Uy1A7",
+      "carParking-19": "https://maps.app.goo.gl/i1p5nu71MX9GQs9L6",
+      "carParking-20": "https://maps.app.goo.gl/EKz8z2muWZSJcjkh6",
+      "carParking-21": "https://maps.app.goo.gl/95dqEoUKRxrBkdVx7",
+      "carParking-22": "https://maps.app.goo.gl/EsV5vfatcZoSezx37",
       
       // Bike Parking
       "bikeParking-1": "https://maps.app.goo.gl/Ut1yxMwFpUiHzfoD7",
-      "bikeParking-2": "https://maps.app.goo.gl/QBdEyVBTkDZx3EYx5?g_st=aw",
-      "bikeParking-3": "https://maps.app.goo.gl/tGpqY5qa6MSuDTJG6",
+      "bikeParking-2": "https://maps.app.goo.gl/C793dwtdAWXeB7Ym7",
+      "bikeParking-3": "https://maps.app.goo.gl/Hf9EEiZCTTQraKwQ7",
 
-      "bikeParking-4": "https://maps.app.goo.gl/gD6wqhxUgXFPGRt5A",
-      "bikeParking-5": "https://maps.app.goo.gl/3gUKUpxq8aowZ6f97",
+      "bikeParking-4": "https://maps.app.goo.gl/9T7a6mXZpGTSyi2W8",
+      "bikeParking-5": "https://maps.app.goo.gl/ttCHW2iqscAcMNni7",
 
-      "bikeParking-6": "https://maps.app.goo.gl/dEitH9fd41G5Fpx26",
+      "bikeParking-6": "https://maps.app.goo.gl/AWKeuM529GhJH8xx6",
       
       // Out Post
       "outPost-1": "https://maps.app.goo.gl/HTBHenXY8baRA1Wx8",
@@ -1957,6 +1989,17 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
       "bathingPlace-4": "https://maps.app.goo.gl/uSpMfge4yetaW1HW6",
       "bathingPlace-5": "https://maps.app.goo.gl/Di6XtzNPcjmwNumKA",
       "bathingPlace-6": "https://maps.app.goo.gl/ALZ3WUJ8TTnwNbHJ7",
+      "bathingPlace-7": "https://maps.app.goo.gl/EUtpt28MWYRuLfVt6",
+
+      //help Desk
+      "helpDesk-1": "https://maps.app.goo.gl/qsenQW18X7yxWwu5A",
+      "helpDesk-2": "https://maps.app.goo.gl/aXhywHM8syr1mVS27",
+      "helpDesk-3": "https://maps.app.goo.gl/VSVZ2GALiqTYmMw29",
+      "helpDesk-4": "https://maps.app.goo.gl/iYHGBkk89wu2mmYL6",
+      "helpDesk-5": "https://maps.app.goo.gl/SaKSFZD7trbd4qhHA",
+      "helpDesk-6": "https://maps.app.goo.gl/mioK3QqQBxD1NwVt5",
+      "helpDesk-7": "https://maps.app.goo.gl/fqToCTMBDqKGF8Ki9",
+
 
     };
     
